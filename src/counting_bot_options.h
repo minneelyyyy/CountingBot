@@ -10,6 +10,7 @@ struct counting_bot_options {
     u64snowflake last_author;
     char prefix[32];
 };
+
 void set_server_data(u64snowflake guild_id, struct counting_bot_options *data);
 void get_server_data(u64snowflake guild_id, struct counting_bot_options *data);
 

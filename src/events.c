@@ -1,6 +1,7 @@
 
-#include <concord/discord.h>
 #include <sys/stat.h>
+#include <concord/discord.h>
+
 #include "commands/commands.h"
 #include "counting_bot_options.h"
 #include "counting.h"
