@@ -4,14 +4,14 @@
 
 /* this is supposed to be part of sys/time.h but it isn't for some reason */
 #define timersub(a, b, result)	\
-  do { \
-    (result)->tv_sec = (a)->tv_sec - (b)->tv_sec; \
-    (result)->tv_usec = (a)->tv_usec - (b)->tv_usec; \
-    if ((result)->tv_usec < 0) { \
-      --(result)->tv_sec; \
-      (result)->tv_usec += 1000000; \
-    } \
-  } while (0)
+    do { \
+        (result)->tv_sec = (a)->tv_sec - (b)->tv_sec; \
+        (result)->tv_usec = (a)->tv_usec - (b)->tv_usec; \
+        if ((result)->tv_usec < 0) { \
+            --(result)->tv_sec; \
+            (result)->tv_usec += 1000000; \
+        } \
+    } while (0)
 
 void ping(struct discord *client, const struct discord_message *msg)
 {
