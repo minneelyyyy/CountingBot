@@ -53,11 +53,43 @@ void on_message(struct discord *client, const struct discord_message *msg)
     return;
 
 just_handle_commands:
-    /* check if message starts with the prefix,
-       for some reason using ! on this does the opposite? */
+    /* check if message starts with the prefix */
     if (strncmp(msg->content, this.prefix, strlen(this.prefix)))
         return;
 
-    struct discord_create_message params = { .content = "command does not exist" };
-    discord_create_message(client, msg->channel_id, &params, NULL);
+    char *content = msg->content + strlen(this.prefix);
+
+    char *command = strtok(content, " ");
+
+    if (!strcmp(command, "ping"))
+    {
+        ping(client, msg);
+    }
+    else if (!strcmp(command, "set"))
+    {
+        char *option = strtok(NULL, " ");
+
+        if (!strcmp(option, "channel"))
+        {
+            char *channel_mention = strtok(NULL, " ");
+            u64snowflake channel_id;
+
+            sscanf(channel_mention, "<#%lu>", &channel_id);
+
+            printf("%lu\n", channel_id);
+
+            this.channel = channel_id;
+            set_server_data(msg->guild_id, &this);
+        }
+        else if (!strcmp(option, "prefix"))
+        {
+            char *prefix = strtok(NULL, " ");
+
+            strncpy(this.prefix, prefix, 31);
+            set_server_data(msg->guild_id, &this);
+        }
+    }
+
+    //struct discord_create_message params = { .content = "command does not exist" };
+    //discord_create_message(client, msg->channel_id, &params, NULL);
 }
