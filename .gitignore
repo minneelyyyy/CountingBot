@@ -4,3 +4,6 @@ CountingBot
 
 # Secret
 src/secret.h
+
+# Other program files
+data/
