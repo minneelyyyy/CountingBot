@@ -1,8 +1,13 @@
 
+PROGRAM_NAME="CountingBot"
+
 CC=gcc
 CFLAGS=-std=c99 -O3 -march=native -Wall -Werror
 
-FILES=src/main.c src/events.c src/counting.c src/commands/ping.c
+FILES=$(shell find ./src -name '*.c')
 
 all: $(FILES)
-	$(CC) $(CFLAGS) -o CountingBot $^ -pthread -ldiscord -lcurl
+	$(CC) $(CFLAGS) -o $(PROGRAM_NAME) $^ -pthread -ldiscord -lcurl
+
+clean:
+	$(RM) $(PROGRAM_NAME)
