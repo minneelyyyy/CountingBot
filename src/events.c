@@ -57,9 +57,7 @@ just_handle_commands:
     if (strncmp(msg->content, this.prefix, strlen(this.prefix)))
         return;
 
-    char *content = msg->content + strlen(this.prefix);
-
-    char *command = strtok(content, " ");
+    char *command = strtok(msg->content + strlen(this.prefix), " ");
 
     if (!strcmp(command, "ping"))
     {
@@ -89,7 +87,4 @@ just_handle_commands:
             set_server_data(msg->guild_id, &this);
         }
     }
-
-    //struct discord_create_message params = { .content = "command does not exist" };
-    //discord_create_message(client, msg->channel_id, &params, NULL);
 }
