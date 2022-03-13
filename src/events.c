@@ -1,19 +1,18 @@
 
 #include <concord/discord.h>
+#include <sys/stat.h>
 #include "commands/commands.h"
+#include "counting_bot_options.h"
 #include "counting.h"
-
-struct counting_bot_server_data this = {
-    .count = 1,
-    .channel = 698016948847378472,
-    .last_author = 0,
-    .prefix = "++",
-};
 
 void on_ready(struct discord *client)
 {
     const struct discord_user *bot = discord_get_self(client);
     log_info("Logged in as %s!", bot->username);
+
+    /* make necessary directories */
+    mkdir("data", S_IRWXU);
+    mkdir("data/servers", S_IRWXU);
 }
 
 inline bool is_zero(char *str)
@@ -34,6 +33,11 @@ void on_message(struct discord *client, const struct discord_message *msg)
     /* exit if content is null */
     if (!strcmp(msg->content, ""))
         return;
+
+    /* store server data */
+    struct counting_bot_server_data this;
+
+    get_server_data(msg->guild_id, &this);
 
     /* we do not do special count processing if we aren't in #counting */
     if (!(msg->channel_id == this.channel))
