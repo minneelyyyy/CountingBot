@@ -35,7 +35,7 @@ void on_message(struct discord *client, const struct discord_message *msg)
         return;
 
     /* store server data */
-    struct counting_bot_server_data this;
+    struct counting_bot_options this;
 
     get_server_data(msg->guild_id, &this);
 

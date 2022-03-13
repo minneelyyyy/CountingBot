@@ -5,14 +5,14 @@
 #include <unistd.h>
 #include "counting_bot_options.h"
 
-static struct counting_bot_server_data default_options = {
+static struct counting_bot_options default_options = {
     .count = 1,
     .channel = 0,
     .last_author = 0,
     .prefix = "++",
 };
 
-void set_server_data(u64snowflake guild_id, struct counting_bot_server_data *data)
+void set_server_data(u64snowflake guild_id, struct counting_bot_options *data)
 {
     /* create variable to store the path of the directory for server data */
     char path[256] = "";
@@ -33,13 +33,13 @@ void set_server_data(u64snowflake guild_id, struct counting_bot_server_data *dat
     FILE *data_file = fopen(data_file_name, "w");
 
     /* write the data */
-    fwrite(data, sizeof(struct counting_bot_server_data), 1, data_file);
+    fwrite(data, sizeof(struct counting_bot_options), 1, data_file);
 
     /* close the file */
     fclose(data_file);
 }
 
-void get_server_data(u64snowflake guild_id, struct counting_bot_server_data *data)
+void get_server_data(u64snowflake guild_id, struct counting_bot_options *data)
 {
     /* create variable to store the path of the directory for server data */
     char path[256] = "";
@@ -66,7 +66,7 @@ void get_server_data(u64snowflake guild_id, struct counting_bot_server_data *dat
     FILE *data_file = fopen(data_file_name, "r");
 
     /* read the data */
-    fread(data, sizeof(struct counting_bot_server_data), 1, data_file);
+    fread(data, sizeof(struct counting_bot_options), 1, data_file);
 
     /* close the file */
     fclose(data_file);

@@ -6,7 +6,7 @@
 
 void counting(struct discord *client,
               const struct discord_message *msg,
-              struct counting_bot_server_data *options,
+              struct counting_bot_options *options,
               unsigned long uinputnumber)
 {
     /* if the same person goes twice in a row, it is important that
