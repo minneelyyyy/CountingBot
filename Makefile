@@ -2,7 +2,7 @@
 PROGRAM_NAME="CountingBot"
 
 CC=gcc
-CFLAGS=-std=c99 -O3 -march=native -Wall -Werror
+CFLAGS=-std=c17 -O3 -march=native -Wall -Werror
 
 FILES=$(shell find ./src -name '*.c')
 
