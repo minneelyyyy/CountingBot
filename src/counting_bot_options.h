@@ -11,7 +11,7 @@ struct counting_bot_options {
     char prefix[32];
 };
 
-void set_server_data(u64snowflake guild_id, struct counting_bot_options *data);
-void get_server_data(u64snowflake guild_id, struct counting_bot_options *data);
+void set_server_options(u64snowflake guild_id, struct counting_bot_options *data);
+void get_server_options(u64snowflake guild_id, struct counting_bot_options *data);
 
 #endif /* COUNTING_BOT_H */

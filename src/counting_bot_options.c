@@ -12,7 +12,7 @@ static struct counting_bot_options default_options = {
     .prefix = "++",
 };
 
-void set_server_data(u64snowflake guild_id, struct counting_bot_options *data)
+void set_server_options(u64snowflake guild_id, struct counting_bot_options *data)
 {
     /* create variable to store the path of the directory for server data */
     char path[256] = "";
@@ -39,7 +39,7 @@ void set_server_data(u64snowflake guild_id, struct counting_bot_options *data)
     fclose(data_file);
 }
 
-void get_server_data(u64snowflake guild_id, struct counting_bot_options *data)
+void get_server_options(u64snowflake guild_id, struct counting_bot_options *data)
 {
     /* create variable to store the path of the directory for server data */
     char path[256] = "";
@@ -59,7 +59,7 @@ void get_server_data(u64snowflake guild_id, struct counting_bot_options *data)
     /* check if data file exists, if it doesn't, write default values into it */
     if (access(data_file_name, F_OK) == -1)
     {
-        set_server_data(guild_id, &default_options);
+        set_server_options(guild_id, &default_options);
     }
 
     /* open file in read mode */

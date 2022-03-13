@@ -38,7 +38,7 @@ void on_message(struct discord *client, const struct discord_message *msg)
     /* store server data */
     struct counting_bot_options this;
 
-    get_server_data(msg->guild_id, &this);
+    get_server_options(msg->guild_id, &this);
 
     /* we do not do special count processing if we aren't in #counting */
     if (!(msg->channel_id == this.channel))
@@ -78,14 +78,14 @@ just_handle_commands:
             printf("%lu\n", channel_id);
 
             this.channel = channel_id;
-            set_server_data(msg->guild_id, &this);
+            set_server_options(msg->guild_id, &this);
         }
         else if (!strcmp(option, "prefix"))
         {
             char *prefix = strtok(NULL, " ");
 
             strncpy(this.prefix, prefix, 31);
-            set_server_data(msg->guild_id, &this);
+            set_server_options(msg->guild_id, &this);
         }
     }
 }

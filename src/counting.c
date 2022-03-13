@@ -27,7 +27,7 @@ void counting(struct discord *client,
 
         options->count = 1;
         options->last_author = 0;
-        set_server_data(msg->guild_id, options);
+        set_server_options(msg->guild_id, options);
         return;
     }
 
@@ -37,7 +37,7 @@ void counting(struct discord *client,
         options->count++;
         discord_create_reaction(client, msg->channel_id, msg->id, 0, "✅", NULL);
         options->last_author = msg->author->id;
-        set_server_data(msg->guild_id, options);
+        set_server_options(msg->guild_id, options);
     }
     else
     {
@@ -58,6 +58,6 @@ void counting(struct discord *client,
 
         options->count = 1;
         options->last_author = 0;
-        set_server_data(msg->guild_id, options);
+        set_server_options(msg->guild_id, options);
     }
 }
