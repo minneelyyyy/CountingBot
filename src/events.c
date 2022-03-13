@@ -16,7 +16,7 @@ void on_ready(struct discord *client)
     log_info("Logged in as %s!", bot->username);
 }
 
-static bool is_zero(char *str)
+inline bool is_zero(char *str)
 {
 	while (*str)
 		if (*str++ != '0')
