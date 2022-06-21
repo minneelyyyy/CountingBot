@@ -1,8 +1,10 @@
 
-#include <concord/discord.h>
 #include <stdio.h>
+#include <string.h>
+#include <errno.h>
 #include <sys/stat.h>
 #include <unistd.h>
+#include <concord/discord.h>
 #include "counting_bot_options.h"
 
 static struct counting_bot_options default_options = {
@@ -66,7 +68,13 @@ void get_server_options(u64snowflake guild_id, struct counting_bot_options *data
     FILE *data_file = fopen(data_file_name, "r");
 
     /* read the data */
-    fread(data, sizeof(struct counting_bot_options), 1, data_file);
+    size_t sz = fread(data, sizeof(struct counting_bot_options), 1, data_file);
+
+    if (sz != sizeof(struct counting_bot_options))
+    {
+        fprintf(stderr, "CountingBot: error: bad write to %s: %s\n", data_file_name, strerror(errno));
+        exit(1);
+    }
 
     /* close the file */
     fclose(data_file);
