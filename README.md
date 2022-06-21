@@ -4,13 +4,9 @@
 
 # Get Started
 1. Install Concord
-    1. Download Concord
 ```console
 $ git clone https://github.com/Cogmasters/concord
 $ cd concord
-```
-    2. Install
-```console
 $ make && sudo make install
 ```
 2. Download CountingBot
