@@ -26,7 +26,7 @@ void set_server_options(u64snowflake guild_id, struct counting_bot_options *data
     }
 
     /* create a variable to store the name of the data file to store options in */
-    char data_file_name[256];
+    char data_file_name[512];
     sprintf(data_file_name, "%s/%s", path, "options.dat");
 
     /* open file in write mode, this will create it if it doesn't exist */
@@ -53,7 +53,7 @@ void get_server_options(u64snowflake guild_id, struct counting_bot_options *data
     }
 
     /* create a variable to store the name of the data file to store options in */
-    char data_file_name[256];
+    char data_file_name[512];
     sprintf(data_file_name, "%s/%s", path, "options.dat");
 
     /* check if data file exists, if it doesn't, write default values into it */
